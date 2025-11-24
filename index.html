@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+  <title>North Riders | Links</title>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: system-ui, sans-serif;
+      background: #000;
+      color: #fff;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    /* Scritte laterali */
+    .side-text {
+      position: fixed;
+      top: 0;
+      width: 40vw;
+      opacity: 0.12;
+      height: 100%;
+      object-fit: cover;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .side-text.left { left: 0; }
+    .side-text.right { right: 0; }
+
+    /* Contenuto centrale */
+    .container {
+      position: relative;
+      z-index: 2;
+      max-width: 360px;
+      margin: 0 auto;
+      padding: 40px 16px 60px;
+      text-align: center;
+    }
+
+    /* Video */
+    .intro-video-wrapper {
+      width: 90%;
+      max-width: 330px;
+      margin: 0 auto 18px;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 0 20px rgba(0,0,0,0.6);
+    }
+
+    video {
+      width: 100%;
+      display: block;
+    }
+
+    h1 {
+      font-size: 1.4rem;
+      letter-spacing: 0.1em;
+      margin-bottom: 4px;
+      text-transform: uppercase;
+    }
+
+    .subtitle {
+      font-size: 0.8rem;
+      letter-spacing: 0.3em;
+      opacity: 0.7;
+      margin-bottom: 22px;
+      text-transform: uppercase;
+    }
+
+    .links {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .link-btn {
+      display: block;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.15);
+      padding: 14px 18px;
+      border-radius: 40px;
+      text-decoration: none;
+      color: #fff;
+      font-size: 1rem;
+      letter-spacing: 0.08em;
+      transition: 0.15s;
+    }
+
+    .link-btn:hover {
+      background: rgba(255,0,255,0.15);
+      border-color: #ff00ff;
+      box-shadow: 0 0 10px rgba(255,0,255,0.4);
+      transform: translateY(-2px);
+    }
+
+    .footer {
+      margin-top: 26px;
+      font-size: 0.7rem;
+      opacity: 0.55;
+      letter-spacing: 0.15em;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Scritte laterali -->
+  <img class="side-text left" src="NORTH_LOGO_SMARTPHONE.png" alt="">
+  <img class="side-text right" src="RIDERS_LOGO_SMARTPHONE.png" alt="">
+
+  <div class="container">
+
+    <!-- VIDEO INTRO che rimane all'ultimo frame -->
+    <div class="intro-video-wrapper">
+      <video id="introVideo" playsinline autoplay muted>
+        <source src="NR_VIDEO.mp4" type="video/mp4">
+      </video>
+    </div>
+
+    <h1>North Riders</h1>
+    <p class="subtitle">Moto Group</p>
+
+    <div class="links">
+      <a class="link-btn" href="https://www.instagram.com/north_riders_it" target="_blank">Instagram</a>
+      <a class="link-btn" href="https://www.tiktok.com/@north_riders_it" target="_blank">TikTok</a>
+      <a class="link-btn" href="IG_RIDERS.html" target="_blank">IG Riders</a>
+      <a class="link-btn" href="https://chat.whatsapp.com/IA1C3AO88PMB1pgBLyDKIv?mode=hqrc&utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnAoey0PF2HyoVuSw3WIbtAK6S9Yp1FWtDdVTG0rVP_GUrywnRwnuna1bTi-Y_aem_ELeqGtcsjnCagrl6TkXuhQ" target="_blank">WhatsApp</a>
+      <a class="link-btn" href="https://www.facebook.com/groups/1899317427604923" target="_blank">Facebook</a>
+	  <a class="link-btn" href="xmas_north_riders.html" target="_blank">XMAS Dinner</a>
+    </div>
+
+    <p class="footer">Ride Safe · Ride North</p>
+
+  </div>
+
+  <script>
+    const video = document.getElementById("introVideo");
+
+    // Una volta terminato, fermiamo il video all’ultimo frame
+    video.addEventListener("ended", () => {
+      video.pause();
+      video.currentTime = video.duration; // resta sull'ultimo frame
+    });
+  </script>
+
+</body>
+</html>
+
+
