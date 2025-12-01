@@ -16,24 +16,42 @@
       min-height: 100vh;
     }
 
-    /* Scritte laterali */
-    .side-text {
+    /* FIOCCHI DI NEVE (loghi NR_LOGO5) */
+    .snowflake {
       position: fixed;
-      top: 0;
-      width: 40vw;
-      opacity: 0.12;
-      height: 100%;
-      object-fit: cover;
+      top: -40px; /* partono un po' sopra lo schermo */
+      width: 24px;
+      height: 24px;
+      background-image: url("NR_LOGO5.png");
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      opacity: 0.9;
       pointer-events: none;
-      z-index: 0;
+      z-index: 1;
+      animation-name: fall;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
     }
-    .side-text.left { left: 0; }
-    .side-text.right { right: 0; }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(0) translateX(0) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(110vh) translateX(40px) rotate(360deg);
+        opacity: 0;
+      }
+    }
 
     /* Contenuto centrale */
     .container {
       position: relative;
-      z-index: 2;
+      z-index: 2; /* sopra i fiocchi */
       max-width: 360px;
       margin: 0 auto;
       padding: 40px 16px 60px;
@@ -107,13 +125,11 @@
 
 <body>
 
-  <!-- Scritte laterali -->
-  <img class="side-text left" src="NORTH_LOGO_SMARTPHONE.png" alt="">
-  <img class="side-text right" src="RIDERS_LOGO_SMARTPHONE.png" alt="">
+  <!-- RIMOSSE LE IMMAGINI LATERALI -->
 
   <div class="container">
 
-    <!-- VIDEO INTRO che rimane all'ultimo frame -->
+    <!-- VIDEO INTRO che rimane all’ultimo frame -->
     <div class="intro-video-wrapper">
       <video id="introVideo" playsinline autoplay muted>
         <source src="NR_VIDEO.mp4" type="video/mp4">
@@ -129,7 +145,7 @@
       <a class="link-btn" href="IG_RIDERS.html" target="_blank">IG Riders</a>
       <a class="link-btn" href="https://chat.whatsapp.com/IA1C3AO88PMB1pgBLyDKIv?mode=hqrc&utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnAoey0PF2HyoVuSw3WIbtAK6S9Yp1FWtDdVTG0rVP_GUrywnRwnuna1bTi-Y_aem_ELeqGtcsjnCagrl6TkXuhQ" target="_blank">WhatsApp</a>
       <a class="link-btn" href="https://www.facebook.com/groups/1899317427604923" target="_blank">Facebook</a>
-	  <a class="link-btn" href="natale_NR.html" target="_blank">XMAS Dinner</a>
+      <a class="link-btn" href="natale_NR.html" target="_blank">XMAS Dinner</a>
     </div>
 
     <p class="footer">Ride Safe · Ride North</p>
@@ -144,10 +160,30 @@
       video.pause();
       video.currentTime = video.duration; // resta sull'ultimo frame
     });
+
+    // FIOCCHI DI NEVE (loghi NR_LOGO5 che cadono)
+    const NUM_FLAKES = 30; // puoi aumentare/diminuire la quantità
+
+    for (let i = 0; i < NUM_FLAKES; i++) {
+      const flake = document.createElement("div");
+      flake.classList.add("snowflake");
+
+      // Posizione orizzontale casuale
+      flake.style.left = Math.random() * 100 + "vw";
+
+      // Durata e ritardo dell'animazione casuali
+      const duration = 8 + Math.random() * 7; // 8–15 secondi
+      const delay = Math.random() * 10;       // max 10s di ritardo
+      flake.style.animationDuration = duration + "s";
+      flake.style.animationDelay = delay + "s";
+
+      // Dimensioni leggermente diverse
+      const scale = 0.6 + Math.random() * 0.9; // 0.6–1.5
+      flake.style.transform = `scale(${scale})`;
+
+      document.body.appendChild(flake);
+    }
   </script>
 
 </body>
 </html>
-
-
-
