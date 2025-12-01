@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <title>NR Christmas Biker Night</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --rosso: #d42027;
+      --rosso-scuro: #8c1015;
+      --verde: #1f6b3b;
+      --oro: #ffd265;
+      --nero: #050505;
+      --bianco: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Roboto", sans-serif;
+      background: radial-gradient(circle at top, #402020 0, #050505 60%);
+      color: var(--bianco);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* tanti fiocchi di neve più grandi, colorati */
+    .snowflake {
+      position: fixed;
+      top: -10px;
+      font-size: 1.4rem;
+      opacity: 0.9;
+      pointer-events: none;
+      animation-name: snow;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+    }
+
+    @keyframes snow {
+      0%   { transform: translateY(-10vh); opacity: 0; }
+      10%  { opacity: 1; }
+      100% { transform: translateY(110vh); opacity: 0; }
+    }
+
+    .card {
+      width: 100%;
+      max-width: 700px;
+      background: linear-gradient(135deg, rgba(212, 32, 39, 0.95), rgba(8, 8, 8, 0.98));
+      border-radius: 24px;
+      border: 2px solid rgba(255, 210, 101, 0.7);
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+      overflow: hidden;
+      position: relative;
+      z-index: 1;
+    }
+
+    header {
+      padding: 20px 24px 16px;
+      display: flex;
+      flex-direction: column;   /* logo + testo centrati in colonna */
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      background: linear-gradient(90deg, var(--rosso-scuro), var(--rosso));
+      text-align: center;
+    }
+
+    .logo-circle {
+      background: radial-gradient(circle at 30% 20%, var(--oro) 0, var(--rosso-scuro) 60%, #000 100%);
+      border-radius: 50%;
+      padding: 12px;
+      border: 2px solid rgba(255, 210, 101, 0.8);
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.8);
+    }
+
+    .logo-circle img {
+      display: block;
+      width: 140px;
+      height: auto;
+      filter: drop-shadow(0 0 6px rgba(0,0,0,0.9));
+    }
+
+    .title-block h1 {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: clamp(2.4rem, 3.1vw, 3.1rem);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--bianco);
+      text-shadow: 0 0 10px rgba(0,0,0,0.9);
+      line-height: 1.1;
+    }
+
+    .title-block h1 span {
+      color: var(--oro);
+    }
+
+    .title-block p {
+      margin-top: 6px;
+      font-size: 0.9rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #ffe7e7;
+    }
+
+    .content {
+      padding: 24px 26px 24px;
+      text-align: center;
+    }
+
+    .data {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 2.4rem;                /* più grande */
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--oro);
+      margin-bottom: 10px;
+    }
+
+    .ora {
+      font-size: 1.4rem;                /* leggermente più grande */
+      margin-bottom: 18px;
+    }
+
+    .luogo {
+      font-size: 1.4rem;                /* più grande */
+      line-height: 1.5;
+      margin-top: 10px;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+
+    .luogo strong {
+      color: var(--oro);
+    }
+
+    /* countdown */
+    .countdown-wrapper {
+      margin-bottom: 18px;
+    }
+
+    .countdown-title {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      margin-bottom: 6px;
+      color: #ffe7e7;
+    }
+
+    .countdown {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      font-family: "Bebas Neue", sans-serif;
+    }
+
+    .count-item {
+      min-width: 70px;
+      padding: 8px 10px;
+      border-radius: 10px;
+      background: rgba(0,0,0,0.4);
+      border: 1px solid rgba(255,210,101,0.5);
+    }
+
+    .count-number {
+      font-size: 1.4rem;
+      color: var(--oro);
+      line-height: 1.1;
+    }
+
+    .count-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    footer {
+      text-align: center;
+      padding: 10px 22px 14px;
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      background: #100707;
+    }
+
+    footer span {
+      color: var(--oro);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- tanti fiocchi che scendono, bianchi rossi e verdi -->
+  <div class="snowflake" style="left: 5%;  color:#ffffff; animation-duration: 12s; animation-delay: 0s;">❄</div>
+  <div class="snowflake" style="left: 12%; color:#d42027; animation-duration: 15s; animation-delay: 2s;">✶</div>
+  <div class="snowflake" style="left: 20%; color:#1f6b3b; animation-duration: 10s; animation-delay: 4s;">❅</div>
+  <div class="snowflake" style="left: 28%; color:#ffffff; animation-duration: 13s; animation-delay: 1s;">✻</div>
+  <div class="snowflake" style="left: 36%; color:#d42027; animation-duration: 16s; animation-delay: 3s;">❄</div>
+  <div class="snowflake" style="left: 44%; color:#1f6b3b; animation-duration: 11s; animation-delay: 5s;">✶</div>
+  <div class="snowflake" style="left: 52%; color:#ffffff; animation-duration: 14s; animation-delay: 1s;">❅</div>
+  <div class="snowflake" style="left: 60%; color:#d42027; animation-duration: 12s; animation-delay: 3s;">✻</div>
+  <div class="snowflake" style="left: 70%; color:#1f6b3b; animation-duration: 17s; animation-delay: 0s;">❄</div>
+  <div class="snowflake" style="left: 80%; color:#ffffff; animation-duration: 13s; animation-delay: 4s;">✶</div>
+  <div class="snowflake" style="left: 88%; color:#d42027; animation-duration: 15s; animation-delay: 2s;">❅</div>
+  <div class="snowflake" style="left: 95%; color:#1f6b3b; animation-duration: 18s; animation-delay: 5s;">✻</div>
+
+  <main class="card">
+    <header>
+      <div class="logo-circle">
+        <img src="NR_LOGO5.png" alt="Logo gruppo NR Bikers" />
+      </div>
+      <div class="title-block">
+        <h1><span>NORTH RIDERS</span></h1>
+        <h1>Christmas Night</h1>
+        <p>motori &amp; sushi</p>
+      </div>
+    </header>
+
+    <section class="content">
+      <div class="data">13 · 12 · 2025</div>
+      <div class="ora">ore 20:30</div>
+
+      <div class="countdown-wrapper">
+        <div class="countdown-title">Countdown all'evento</div>
+        <div id="countdown" class="countdown">
+          <div class="count-item">
+            <div class="count-number" id="days">--</div>
+            <div class="count-label">giorni</div>
+          </div>
+          <div class="count-item">
+            <div class="count-number" id="hours">--</div>
+            <div class="count-label">ore</div>
+          </div>
+          <div class="count-item">
+            <div class="count-number" id="minutes">--</div>
+            <div class="count-label">min</div>
+          </div>
+          <div class="count-item">
+            <div class="count-number" id="seconds">--</div>
+            <div class="count-label">sec</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="luogo">
+        <strong>Sushi Himawary</strong><br>
+        Viale Europa 19
+      </div>
+    </section>
+
+    <footer>
+      NR Bikers • <span>Ride · Eat · Celebrate</span>
+    </footer>
+  </main>
+
+  <script>
+    // Countdown all'evento: 13/12/2025 ore 20:30
+    const eventDate = new Date("2025-12-13T20:30:00");
+
+    function updateCountdown() {
+      const now = new Date();
+      const diff = eventDate - now;
+
+      const daysEl = document.getElementById("days");
+      const hoursEl = document.getElementById("hours");
+      const minutesEl = document.getElementById("minutes");
+      const secondsEl = document.getElementById("seconds");
+
+      if (diff <= 0) {
+        daysEl.textContent = "0";
+        hoursEl.textContent = "0";
+        minutesEl.textContent = "0";
+        secondsEl.textContent = "0";
+        return;
+      }
+
+      const seconds = Math.floor(diff / 1000);
+      const days = Math.floor(seconds / (3600 * 24));
+      const hours = Math.floor((seconds % (3600 * 24)) / 3600);
+      const minutes = Math.floor((seconds % 3600) / 60);
+      const secs = seconds % 60;
+
+      daysEl.textContent = days;
+      hoursEl.textContent = String(hours).padStart(2, "0");
+      minutesEl.textContent = String(minutes).padStart(2, "0");
+      secondsEl.textContent = String(secs).padStart(2, "0");
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
+</body>
+</html>
