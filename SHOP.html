@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NR SHOP</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+
+<style>
+body{margin:0;background:#000;color:#fff;font-family:'Orbitron',sans-serif;}
+.wrapper{max-width:1200px;margin:auto;padding:40px 20px;}
+h1{text-align:center;font-size:60px;letter-spacing:0.2em;text-shadow:0 0 20px #ff0033;}
+.subtitle{text-align:center;color:#ff0033;margin-bottom:40px;}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:30px;}
+
+/* SLIDER */
+.slider{position:relative;width:100%;overflow:hidden;background:#111;border:1px solid rgba(255,255,255,0.1);} 
+.slides{display:flex;transition:transform 0.5s ease;}
+.slide{min-width:100%;}
+.slide img{width:100%;display:block;}
+
+.nav{
+  position:absolute;top:50%;transform:translateY(-50%);
+  background:rgba(0,0,0,0.6);border:none;color:#fff;
+  font-size:20px;padding:10px 15px;cursor:pointer;
+}
+.prev{left:10px}
+.next{right:10px}
+
+.dots{display:flex;justify-content:center;margin-top:10px;gap:8px}
+.dot{width:8px;height:8px;border-radius:50%;background:#555;cursor:pointer}
+.dot.active{background:#ff0033}
+
+.info{font-size:14px;line-height:1.8;}
+.price{font-size:28px;color:#ff0033;margin:20px 0;}
+.box{border:1px solid rgba(255,255,255,0.2);padding:20px;margin-bottom:20px;}
+
+table{width:100%;border-collapse:collapse;margin-top:20px;}
+td,th{border:1px solid #333;padding:10px;text-align:center;}
+.footer{margin-top:40px;text-align:center;color:#ff0033;}
+
+@media(max-width:800px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="wrapper">
+
+<h1>NR SHOP</h1>
+<div class="subtitle">🔥 Ultimo drop felpe NR 🔥</div>
+
+<div class="grid">
+
+<!-- SLIDER PRODUCT -->
+<div class="product">
+  <div class="slider">
+    <div class="slides" id="slides">
+      <div class="slide"><img src="felpa fronte_1.png"></div>
+      <div class="slide"><img src="felpa retro_1.png"></div>
+    </div>
+    <button class="nav prev" onclick="moveSlide(-1)">‹</button>
+    <button class="nav next" onclick="moveSlide(1)">›</button>
+  </div>
+  <div class="dots" id="dots"></div>
+</div>
+
+<div class="info">
+<div class="price">55€</div>
+
+<div class="box">
+💳 <b>Pagamento PayPal</b><br>
+@PAYPALNR<br><br>
+📝 <b>Descrizione pagamento:</b><br>
+Nome + numero telefono + taglia
+</div>
+
+<div class="box">
+📦 <b>Consegna</b><br>
+- A mano (BZ e dintorni)<br>
+- Spedizione +5€<br><br>
+Se spedizione → inserire indirizzo
+</div>
+
+<div class="box">
+⏰ <b>Chiusura shop</b><br>
+26 Marzo ore 19:00
+</div>
+
+<div class="box">
+📅 <b>Consegna</b><br>
+~10 giorni dopo chiusura<br>
+(spedizioni possono richiedere di più)
+</div>
+</div>
+
+</div>
+
+<h2 style="margin-top:60px">SIZE GUIDE</h2>
+
+<table>
+<tr><th>Size</th><th>Length</th><th>Shoulder</th><th>Chest</th><th>Sleeve</th></tr>
+<tr><td>S</td><td>68</td><td>57</td><td>58</td><td>55</td></tr>
+<tr><td>M</td><td>70</td><td>59</td><td>60</td><td>56</td></tr>
+<tr><td>L</td><td>72</td><td>61</td><td>62</td><td>57</td></tr>
+<tr><td>XL</td><td>74</td><td>63</td><td>64</td><td>58</td></tr>
+<tr><td>2XL</td><td>76</td><td>65</td><td>66</td><td>59</td></tr>
+</table>
+
+<div class="footer">Grazie a tutti dal team NR</div>
+
+</div>
+
+<script>
+let index=0;
+const slides=document.getElementById('slides');
+const total=slides.children.length;
+const dotsContainer=document.getElementById('dots');
+
+for(let i=0;i<total;i++){
+  const d=document.createElement('div');
+  d.className='dot';
+  d.onclick=()=>{index=i;update();};
+  dotsContainer.appendChild(d);
+}
+
+function update(){
+  slides.style.transform=`translateX(-${index*100}%)`;
+  document.querySelectorAll('.dot').forEach((d,i)=>{
+    d.classList.toggle('active',i===index);
+  });
+}
+
+function moveSlide(dir){
+  index=(index+dir+total)%total;
+  update();
+}
+
+update();
+</script>
+
+</body>
+</html>
+
